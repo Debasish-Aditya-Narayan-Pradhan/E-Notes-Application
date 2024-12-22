@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::title}, ~{::section} ) }">
+<head>
+    <meta charset="UTF-8">
+    <title>View page</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid p-2">
+        <h4 class="text-center">View All Notes</h4>
+        <div class="row">
+            <div th:each="n:${noteList}" class="col-md-10 offset-md-1 mt-2 shadow p-3 mb-5 bg-body rounded">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <i class="fa-solid fa-book fa-2x"></i>
+                        </div>
+
+                        <p class="fw-bold">Title: [[${n.title}]]</p>
+                        <p>Description: [[${n.description}]]</p>
+                        <p>Public Date: <span class="fw-bold text-primary">[[${n.date}]]</span></p>
+
+                        <div class="text-center">
+                            <a th:href="@{'editNotes/'+${n.id}}" class="btn btn-primary btn-sm">Edit</a>
+                            <a th:href="@{'deleteNotes/'+${n.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div style="display:flex;flex-direction:column">
+        <div>
+            <span style="margin-left:150px;font-weight:bold" th:text="'Total Notes: ' + ${size}"></span>
+        </div>
+        <div class="" style="display:flex;justify-content:center;align-items:center">
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
